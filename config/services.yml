@@ -1,0 +1,9 @@
+services:
+    dmzx.newtopic.listener:
+        class: dmzx\newtopic\event\listener
+        arguments:
+            - @template
+            - @dbal.conn
+            - @auth
+        tags:
+            - { name: event.listener }            
