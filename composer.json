@@ -3,7 +3,7 @@
 	"type": "phpbb-extension",
 	"description": "Show the list of forums on the board, the forum selected will be created a new topic.",
 	"homepage": "http://www.dmzx-web.net",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"time": "2015-11-19",
 	"keywords": ["phpbb", "extension", "newtopic"],
 	"license": "GPL-2.0",

@@ -25,20 +25,25 @@ class listener implements EventSubscriberInterface
 	/** @var \phpbb\auth\auth */
 	protected $auth;
 
+	/** @var \phpbb\user */
+	protected $user;
+
 	/**
 	* Constructor
 	*
 	* @param \phpbb\template\template			$template
 	* @param \phpbb\db\driver\driver_interface	$db
 	* @param \phpbb\auth\auth					$auth
+	* @param \phpbb\user						$user
 	*
 	*/
 
-	public function __construct(\phpbb\template\template $template, \phpbb\db\driver\driver_interface $db, \phpbb\auth\auth $auth)
+	public function __construct(\phpbb\template\template $template, \phpbb\db\driver\driver_interface $db, \phpbb\auth\auth $auth, \phpbb\user $user)
 	{
 		$this->template				= $template;
 		$this->db					= $db;
 		$this->auth 				= $auth;
+		$this->user 				= $user;
 	}
 
 	static public function getSubscribedEvents()
@@ -50,6 +55,9 @@ class listener implements EventSubscriberInterface
 
 	public function page_header($event)
 	{
+		// add lang file
+		$this->user->add_lang_ext('dmzx/newtopic', 'common');
+
 		$forum_box = $this->make_forum_select2(false, false, false, false);
 
 		$this->template->assign_vars(array(
