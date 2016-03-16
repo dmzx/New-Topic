@@ -37,7 +37,6 @@ class listener implements EventSubscriberInterface
 	* @param \phpbb\user						$user
 	*
 	*/
-
 	public function __construct(\phpbb\template\template $template, \phpbb\db\driver\driver_interface $db, \phpbb\auth\auth $auth, \phpbb\user $user)
 	{
 		$this->template				= $template;
