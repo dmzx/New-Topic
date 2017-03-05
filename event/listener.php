@@ -28,6 +28,12 @@ class listener implements EventSubscriberInterface
 	/** @var \phpbb\user */
 	protected $user;
 
+	/** @var string */
+	protected $php_ext;
+
+	/** @var string */
+	protected $root_path;
+
 	/**
 	* Constructor
 	*
@@ -35,14 +41,25 @@ class listener implements EventSubscriberInterface
 	* @param \phpbb\db\driver\driver_interface	$db
 	* @param \phpbb\auth\auth					$auth
 	* @param \phpbb\user						$user
+	* @param string								$php_ext
+	* @param string								$root_path
 	*
 	*/
-	public function __construct(\phpbb\template\template $template, \phpbb\db\driver\driver_interface $db, \phpbb\auth\auth $auth, \phpbb\user $user)
+	public function __construct(
+		\phpbb\template\template $template,
+		\phpbb\db\driver\driver_interface $db,
+		\phpbb\auth\auth $auth,
+		\phpbb\user $user,
+		$php_ext,
+		$root_path
+	)
 	{
-		$this->template				= $template;
-		$this->db					= $db;
-		$this->auth 				= $auth;
-		$this->user 				= $user;
+		$this->template			= $template;
+		$this->db				= $db;
+		$this->auth 			= $auth;
+		$this->user 			= $user;
+		$this->php_ext 			= $php_ext;
+		$this->root_path 		= $root_path;
 	}
 
 	static public function getSubscribedEvents()
@@ -57,7 +74,7 @@ class listener implements EventSubscriberInterface
 		// add lang file
 		$this->user->add_lang_ext('dmzx/newtopic', 'common');
 
-		$forum_box = $this->make_forum_select2(false, false, false, false);
+		$forum_box = $this->make_forum_select2();
 
 		$this->template->assign_vars(array(
 			'EXT_NEW_TOPIC'		=> $forum_box,
@@ -120,7 +137,7 @@ class listener implements EventSubscriberInterface
 			else
 			{
 				$selected = (is_array($select_id)) ? ((in_array($row['forum_id'], $select_id)) ? ' selected="selected"' : '') : (($row['forum_id'] == $select_id) ? ' selected="selected"' : '');
-				$forum_list .= '<option value="posting.php?mode=post&amp;f=' . $row['forum_id'] . '"' . (($disabled) ? ' disabled="disabled" class="disabled-option"' : $selected) . '>' . $padding . $row['forum_name'] . '</option>';
+				$forum_list .= '<option value="' . append_sid("{$this->root_path}posting.$this->php_ext", array('mode' => 'post', 'f' => $row['forum_id'])) . '"' . (($disabled) ? ' disabled="disabled" class="disabled-option"' : $selected) . '>' . $padding . $row['forum_name'] . '</option>';
 			}
 		}
 		return $forum_list;

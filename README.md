@@ -5,7 +5,7 @@
 ## Install
 1. Download the latest release.
 2. In the `ext` directory of your phpBB board, create a new directory named `dmzx` (if it does not already exist).
-3. Copy the `newtopic` folder to `phpBB/ext/dmzx/` (if done correctly, you'll have the main extension class at (your forum root)/ext/dmzx/newtopic/composer.json).
+3. Copy the `newtopic` folder to `/ext/dmzx/` (if done correctly, you'll have the main extension class at (your forum root)/ext/dmzx/newtopic/composer.json).
 4. Navigate in the ACP to `Customise -> Manage extensions`.
 5. Look for `New Topic` under the Disabled Extensions list, and click its `Enable` link.
 

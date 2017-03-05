@@ -1,11 +1,15 @@
 {
 	"name": "dmzx/newtopic",
 	"type": "phpbb-extension",
-	"description": "Show the list of forums on the board, the forum selected will be created a new topic.",
+	"description": "Select box to quickly create new topic in a forum.",
 	"homepage": "http://www.dmzx-web.net",
-	"version": "1.0.1",
-	"time": "2015-11-19",
-	"keywords": ["phpbb", "extension", "newtopic"],
+	"version": "1.0.3",
+	"time": "2017-01-21",
+	"keywords": [
+		"phpbb",
+		"extension",
+		"newtopic"
+	],
 	"license": "GPL-2.0",
 	"authors": [
 		{
@@ -16,7 +20,8 @@
 		}
 	],
 	"require": {
-		"php": ">=5.3.3"
+		"php": ">=5.3.3",
+		"phpbb/phpbb": ">=3.1.0,<3.3"
 	},
 	"require-dev": {
 		"phpbb/epv": "dev-master"
@@ -24,7 +29,7 @@
 	"extra": {
 		"display-name": "New Topic",
 		"soft-require": {
-			"phpbb/phpbb": ">=3.1.0,<3.2.*@dev"
+			"phpbb/phpbb": ">=3.1.0,<3.3"
 		},
 		"version-check": {
 			"host": "www.dmzx-web.net",
